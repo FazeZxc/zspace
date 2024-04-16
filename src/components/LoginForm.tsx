@@ -49,6 +49,7 @@ export const LoginForm = (props: propsType) => {
                 setFirebaseErrorResponse(message)
             })
     }
+
     return (
         <div className="flex flex-col gap-20 mt-[100px] w-[300px]">
             <h1 className="text-4xl font-semibold text-white text-center underline">

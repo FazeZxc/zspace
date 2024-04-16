@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { collection, getDoc, setDoc } from 'firebase/firestore'
 import { doc } from 'firebase/firestore'
 import db from '../firebase'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const citiesRef = collection(db, 'scribble')
 const docRef = doc(db, 'scribble', 'A')
@@ -24,15 +24,19 @@ export const Scribble = () => {
     }
 
     async function addScribble(event: React.SyntheticEvent) {
-        if (auth.currentUser) {
-            event.preventDefault()
-            await setDoc(doc(citiesRef, 'A'), {
-                Author: 'admin',
-                message: userInput,
-            })
-        } else {
-            prompt('not admin')
-        }
+        console.log(auth.currentUser?.displayName)
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                event.preventDefault()
+                await setDoc(doc(citiesRef, 'A'), {
+                    Author: 'admin',
+                    message: userInput,
+                })
+                alert('added')
+            } else {
+                alert('not admin')
+            }
+        })
     }
     useEffect(() => {
         fetchScribble()

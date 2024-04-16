@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
-export const LoginForm = ({setIsUserLoggedIn}) => {
+interface propsType {
+    setIsUserLoggedIn: (isUserLoggedIn: boolean) => void
+}
+
+export const LoginForm = (props: propsType) => {
     const [userInput, setUserInput] = useState({
         email: '',
         password: '',
@@ -38,7 +42,7 @@ export const LoginForm = ({setIsUserLoggedIn}) => {
             .then((userCredentials) => {
                 const { user } = userCredentials
                 console.log(user)
-                setIsUserLoggedIn(true)
+                props.setIsUserLoggedIn(true)
             })
             .catch((error) => {
                 const { message } = error

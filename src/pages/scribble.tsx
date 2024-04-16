@@ -39,15 +39,23 @@ export const Scribble = () => {
     }, [])
 
     return (
-        <div className="w-1/2 flex flex-col">
+        <div className="w-1/2 h-3/4  flex flex-col resize-none mt-[100px] bg-slate-500 rounded-[40px]">
             <textarea
                 value={userInput}
                 onChange={handleChange}
-                className=" h-screen text-left bg-[#272727] text-white text-2xl"
+                className="h-full p-4 pb-2 text-left bg-[#272727] text-white text-xl resize-none rounded-[24px] m-4"
             ></textarea>
-            <button className="bg-lime-400 w-[200px] border-2" onClick={addScribble}>
-                Add
-            </button>
+            <div className="flex flex-row justify-between items-center p-4 pt-2">
+                <button
+                    className="bg-lime-400 w-[200px] border-2 rounded-lg p-2 text-white font-semibold text-2xl"
+                    onClick={addScribble}
+                >
+                    Add
+                </button>
+                <button className="bg-blue-400 w-[200px] border-2 rounded-lg p-2 text-white font-semibold text-2xl mb-4">
+                    Copy
+                </button>
+            </div>
         </div>
     )
 }

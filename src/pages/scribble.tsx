@@ -52,7 +52,13 @@ export const Scribble = () => {
                 >
                     Add
                 </button>
-                <button className="bg-blue-400 w-[200px] border-2 rounded-lg p-2 text-white font-semibold text-2xl mb-4">
+                <button
+                    onClick={() => {
+                        navigator.clipboard.writeText(userInput)
+                        prompt('copied to clipboard')
+                    }}
+                    className="bg-blue-400 w-[200px] border-2 rounded-lg p-2 text-white font-semibold text-2xl mb-4"
+                >
                     Copy
                 </button>
             </div>
